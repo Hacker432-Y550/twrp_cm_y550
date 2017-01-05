@@ -15,4 +15,4 @@
 # Inherit from nx510j device
 $(call inherit-product, device/huawei/y550/y550.mk)
 
-PRODUCT_NAME := cm_y550
+PRODUCT_NAME := lineage_y550

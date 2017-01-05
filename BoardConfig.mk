@@ -84,5 +84,3 @@ TW_EXTRA_LANGUAGES := true
 TW_INPUT_BLACKLIST := "accelerometer\x0alis3dh-accel"
 TW_NEW_ION_HEAP := true
 TW_THEME := portrait_hdpi
-/brightness
-

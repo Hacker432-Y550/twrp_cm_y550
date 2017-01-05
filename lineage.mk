@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit from nx510j device
 $(call inherit-product, device/huawei/y550/y550.mk)
+
+# Include tzdata for recovery
+PRODUCT_COPY_FILES += \
+    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 PRODUCT_NAME := lineage_y550

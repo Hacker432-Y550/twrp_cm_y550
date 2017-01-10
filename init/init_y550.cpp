@@ -34,24 +34,20 @@
 #include "log.h"
 #include "util.h"
 
-#define ISMATCH(a,b)    (!strncmp(a,b,PROP_VALUE_MAX))
-
 void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
     std::ifstream fin;
     std::string buf;
-    int rc;
 
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+    std::string platform = property_get("ro.board.platform");
+    if (platform != ANDROID_TARGET)
         return;
 
     fin.open("/proc/app_info");
     while (getline(fin, buf))
         if (buf.find("huawei_fac_product_name") != std::string::npos)
             break;
-	fin.close();
+    fin.close();
 
     /* C8817D */
     if (buf.find("C8817D") != std::string::npos) {
@@ -141,4 +137,62 @@ void vendor_load_properties()
         property_set("ro.build.description", "Y550-L01-user 4.4.4 GRJ90 C00B239SP01 release-keys");
         property_set("ro.build.fingerprint", "Huawei/Y550-L01/hwY550-L01:4.4.4/HuaweiY550-L01/C00B239SP01:user/ota-rel-keys,release-keys");
     }
+    /* Y550-L02 */
+    else if (buf.find("Y550-L02") != std::string::npos) {
+        property_set("ro.product.model", "Y550-L02");
+        property_set("ro.product.device", "Y550-L02");
+        property_set("ro.build.product", "Y550-L02");
+        property_set("ro.build.description", "Y550-L02-user 4.4.4 GRJ90 C346B247SP01 release-keys");
+        property_set("ro.build.fingerprint", "Huawei/Y550-L02/hwY550-L02:4.4.4/HuaweiY550-L02/C346B247SP01:user/ota-rel-keys,release-keys");
+    }
+    /* Y550-L03 */
+    else if (buf.find("Y550-L03") != std::string::npos) {
+        property_set("ro.product.model", "Y550-L03");
+        property_set("ro.product.device", "Y550-L03");
+        property_set("ro.build.product", "Y550-L03");
+        property_set("ro.build.description", "Y550-L03-user 4.4.4 GRJ90 C00B249 release-keys");
+        property_set("ro.build.fingerprint", "Huawei/Y550-L03/hwY550-L03:4.4.4/HuaweiY550-L03/C00B249:user/ota-rel-keys,release-keys");
+    }
+    /* Y635-L01 */
+    if (buf.find("Y635-L01") != std::string::npos) {
+        property_set("ro.product.model", "Y635-L01");
+        property_set("ro.product.device", "Y635-L01");
+        property_set("ro.build.product", "Y635-L01");
+        property_set("ro.build.description", "Y635-L01-user 4.4.4 GRJ90 C21B131 release-keys");
+        property_set("ro.build.fingerprint", "Huawei/Y635-L01/hwY635:4.4.4/HuaweiY635-L01/C21B131:user/release-keys");
+	}
+    /* Y635-L02 */
+    else if (buf.find("Y635-L02") != std::string::npos) {
+        property_set("ro.product.model", "Y635-L02");
+        property_set("ro.product.device", "Y635-L02");
+        property_set("ro.build.product", "Y635-L02");
+	}
+    /* Y635-L03 */
+    else if (buf.find("Y635-L03") != std::string::npos) {
+        property_set("ro.product.model", "Y635-L03");
+        property_set("ro.product.device", "Y635-L03");
+        property_set("ro.build.product", "Y635-L03");
+        property_set("ro.build.description", "Y635-L03-user 4.4.4 GRJ90 C69B003 release-keys");
+        property_set("ro.build.fingerprint", "Huawei/Y635-L03/hwY635:4.4.4/HuaweiY635-L03/C69B003:user/release-keys");
+	}
+    /* Y635-L11 */
+    else if (buf.find("Y635-L11") != std::string::npos) {
+        property_set("ro.product.model", "Y635-L11");
+        property_set("ro.product.device", "Y635-L11");
+        property_set("ro.build.product", "Y635-L11");
+	}
+    /* Y635-L21 */
+    else if (buf.find("Y635-L21") != std::string::npos) {
+        property_set("ro.product.model", "Y635-L21");
+        property_set("ro.product.device", "Y635-L21");
+        property_set("ro.build.product", "Y635-L21");
+	}
+   /* G760-L01 */
+    else if (buf.find("G760-L01") != std::string::npos) {
+        property_set("ro.product.model", "G760-L01");
+        property_set("ro.product.device", "G760-L01");
+        property_set("ro.build.product", "G760-L01");
+        property_set("ro.build.description", "G760-L01-user 5.1.1 GRJ90 C464B340 release-keys");
+        property_set("ro.build.fingerprint", "Huawei/G760-L01/hwG760-L01:5.1.1/HuaweiG760-L01/C464B340:user/release-keys");
+	}
 }
